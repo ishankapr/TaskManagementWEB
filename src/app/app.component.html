@@ -1,55 +1,9 @@
 <mat-toolbar color="primary">
   <span>{{ headerTitle }}</span>
-  <span class="example-spacer"></span>
+  <span class="spacer"></span>
   <button mat-raised-button (click)="logout()">
     Login
   </button>
 </mat-toolbar>
 
-<div class="table-container" style="margin-top: 10px;">
-  <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Task1" #input>
-  </mat-form-field>
-
-<div class="task-button-container"  style="margin-top: 10px;">
-  <button mat-raised-button (click)="openAddTask()" class="task-button">
-    Add data
-  </button>
-</div>
-
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-  <!-- Title Column -->
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef> Title </th>
-    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-  </ng-container>
-
-  <!-- Description Column -->
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef> Description </th>
-    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-  </ng-container>
-
-  <!-- DueDate Column -->
-  <ng-container matColumnDef="dueDate">
-    <th mat-header-cell *matHeaderCellDef> Due Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.dueDate | date: 'dd/MM/yyyy'}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef> Action </th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-icon-button color="primary" (click)="openEditForm(element)">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" (click)="deleteTask(element.taskID)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-</table>
+<router-outlet></router-outlet>

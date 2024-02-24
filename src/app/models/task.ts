@@ -5,6 +5,7 @@ export class Task {
     dueDate !: Date;
     createdDate!: Date;
     createdBy!: number;
+    isCompleted!: boolean;
 
     constructor(task: Task){
         this.taskID = task.taskID
@@ -13,5 +14,6 @@ export class Task {
         this.dueDate = task.dueDate
         this.createdBy = task.createdBy
         this.createdDate = task.createdDate
+        this.isCompleted = task.isCompleted
     }
 }

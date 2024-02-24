@@ -25,12 +25,9 @@
 </div>
 <div mat-dialog-actions class="action">
     <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
-    <button mat-raised-button color="primary" type="submit">Save</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!taskForm.valid">{{ data ? 'Update' : 'Save'}}</button>
 </div>
 </form>
 
-<div *ngIf="!taskForm.valid">
-    Please Enter Required Information
-</div>
 
 

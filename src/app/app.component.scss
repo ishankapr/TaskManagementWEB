@@ -1,18 +1,26 @@
-.example-spacer {
-    flex: 1 1 auto;
-  }
+.spacer {
+  flex: 1 1 auto;
+}
 
-  .table-container{
-    padding-top: 20px;
-    max-width: 80%;
-    margin: 0 auto;
-    width: 100%;
+.table-container {
+  padding-top: 20px;
+  max-width: 80%;
+  margin: 0 auto;
+
+  mat-form-field {
+    width: 50%;
   }
-  
-  .task-button-container {
-    padding-bottom: 16px;
-  }
-  
-  .task-button + .task-button {
-    margin-left: 8px;
-  }
+}
+
+.task-button-container {
+  padding-bottom: 16px;
+}
+
+.task-button {
+  height: 50px;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}

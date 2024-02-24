@@ -1,0 +1,26 @@
+<div class="container-fluid" style="margin-top: 10%;">
+  <div class="row">
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Username</mat-label>
+              <input matInput type="text" formControlName="username">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <div mat-dialog-actions class="action">
+              <button mat-raised-button color="primary" type="submit">Login</button>
+          </div>
+          </div>
+        </form>
+
+  </div>
+</div>

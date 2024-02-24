@@ -15,4 +15,8 @@ export class AuthService {
     return this.httpClient.post(`${environment.apiUrl}/auth/login`,data);
   }
 
+  IsLoggedIn(){
+    return localStorage.getItem('loginInfo') != null;
+  }
+
 }

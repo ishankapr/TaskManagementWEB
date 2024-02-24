@@ -11,17 +11,29 @@ export class TaskService {
 
   constructor(private httpClient: HttpClient) { }
 
-  addTask(data: Task): Observable<any>{
-    debugger
+  addTask(data: Task): Observable<any>
+  {
     return this.httpClient.post(`${environment.apiUrl}/Task/tasks`,data);
   }
 
-  getAllTasks(): Observable<Task[]>{
+  getAllTasks(): Observable<Task[]>
+  {
     return this.httpClient.get<Task[]>(`${environment.apiUrl}/Task/tasks`);
   }
 
-  deleteTask(id: number): Observable<any>{
+  deleteTask(id: number): Observable<any>
+  {
     return this.httpClient.delete<any>(`${environment.apiUrl}/Task/tasks/${id}`);
   }
 
+  updateTask(task: Task)
+  {
+    return this.httpClient.put(`${environment.apiUrl}/Task/tasks`,task);
+  }
+  
+  markAsCompleted(id: number): Observable<any>
+  {
+    debugger
+    return this.httpClient.put(`${environment.apiUrl}/Task/tasks/complete/${id}`,id);
+  }
 }

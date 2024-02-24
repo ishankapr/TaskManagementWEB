@@ -19,13 +19,18 @@ import { MatSortModule} from '@angular/material/sort';
 import { MatTableModule} from '@angular/material/table';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { TaskAddEditComponentComponent } from './task.add-edit.component/task.add-edit.component.component';
-import { AuthComponent } from './auth/auth.component';
+import { LoginComponent } from './login/login.component';
+import { TaskListComponent } from './task.list/task.list.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskAddEditComponentComponent,
-    AuthComponent,
+    LoginComponent,
+    TaskListComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +49,8 @@ import { AuthComponent } from './auth/auth.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatCardModule,
+    MatProgressBarModule
   ],
   providers: [provideNativeDateAdapter()],
   bootstrap: [AppComponent]
