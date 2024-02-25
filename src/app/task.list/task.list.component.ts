@@ -69,9 +69,14 @@ export class TaskListComponent {
   getTasks() {
     this.taskService.getAllTasks().subscribe({
       next: (val) => {
+        val.forEach((item) => {
+          item.status = item.isCompleted ? 'Completed' : 'Pending';
+        });
+
         this.dataSource = new MatTableDataSource(val);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        
       },
       error: (err: any) => {
         console.log(err)

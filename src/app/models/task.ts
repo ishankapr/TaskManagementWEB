@@ -6,6 +6,7 @@ export class Task {
     createdDate!: Date;
     createdBy!: number;
     isCompleted!: boolean;
+    status!: string;
 
     constructor(task: Task){
         this.taskID = task.taskID
@@ -15,5 +16,6 @@ export class Task {
         this.createdBy = task.createdBy
         this.createdDate = task.createdDate
         this.isCompleted = task.isCompleted
+        this.status = task.status
     }
 }
