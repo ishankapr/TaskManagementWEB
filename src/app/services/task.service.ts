@@ -33,7 +33,6 @@ export class TaskService {
   
   markAsCompleted(id: number): Observable<any>
   {
-    debugger
     return this.httpClient.put(`${environment.apiUrl}/Task/tasks/complete/${id}`,id);
   }
 }

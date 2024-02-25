@@ -3,10 +3,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Task } from '../models/task';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent } from '@angular/material/dialog';
 import { TaskService } from '../services/task.service';
 import { MessageService } from '../services/message.service';
 import { TaskAddEditComponentComponent } from '../task.add-edit.component/task.add-edit.component.component';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
 
 @Component({
   selector: 'app-task.list',
@@ -15,7 +16,7 @@ import { TaskAddEditComponentComponent } from '../task.add-edit.component/task.a
 })
 export class TaskListComponent {
 
-  
+
   displayedColumns: string[] = ['title', 'description', 'dueDate', 'status', 'actions'];
   dataSource = new MatTableDataSource<Task>;
   isAddMode: boolean | undefined;
@@ -53,6 +54,7 @@ export class TaskListComponent {
 
   ngOnInit(): void {
     this.getTasks()
+    this.messageService.openSnackBar('Tasks Reloaded!')
   }
 
   openAddTask() {
@@ -70,7 +72,6 @@ export class TaskListComponent {
         this.dataSource = new MatTableDataSource(val);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-        this.messageService.openSnackBar('Tasks Reloaded!')
       },
       error: (err: any) => {
         console.log(err)
@@ -86,15 +87,25 @@ export class TaskListComponent {
   }
 
   deleteTask(id: number) {
-    this.taskService.deleteTask(id).subscribe({
+    var deleteRef = this._dialog.open(ConfirmationComponent, { data: 'Delete' })
+    deleteRef.afterClosed().subscribe({
       next: (val) => {
-        this.messageService.openSnackBar('Task Deleted Successfully!!');
-        this.getTasks()
-      },
-      error: (err: any) => {
-        console.log(err)
+        if (val) {
+          this.taskService.deleteTask(id).subscribe({
+            next: (val) => {
+              this.messageService.openSnackBar('Task Deleted Successfully!!');
+              this.getTasks()
+            },
+            error: (err: any) => {
+              console.log(err)
+              this.messageService.openSnackBar('Error on Deleting Task!!');
+            }
+          })
+        }
+
       }
     })
+
   }
 
   openEditForm(data: Task) {
@@ -107,16 +118,24 @@ export class TaskListComponent {
   }
 
   markAsCompleted(id: number) {
-    debugger
-    this.taskService.markAsCompleted(id).subscribe({
+    const deleteRef = this._dialog.open(ConfirmationComponent, { data: 'Mark as Complete' });
+    deleteRef.afterClosed().subscribe({
       next: (val) => {
-        this.messageService.openSnackBar('Task Completed Successfully!!');
-        this.getTasks()
-      },
-      error: (err: any) => {
-        console.log(err)
-        this.messageService.openSnackBar('Error on completion!!');
+        if (val) {
+          this.taskService.markAsCompleted(id).subscribe({
+            next: (val) => {
+              this.messageService.openSnackBar('Task Completed Successfully!!');
+              this.getTasks()
+            },
+            error: (err: any) => {
+              console.log(err)
+              this.messageService.openSnackBar('Error on completion!!');
+            }
+          })
+        }
+
       }
     })
+    
   }
 }

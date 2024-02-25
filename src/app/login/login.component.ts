@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-auth',
@@ -16,7 +17,7 @@ export class LoginComponent {
   loginInfo: any;
   submitted = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private messageService: MessageService,) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -24,7 +25,6 @@ export class LoginComponent {
   }
 
   onSubmit() {
-
     this.submitted = true;
 
     if (this.loginForm.invalid) {
@@ -38,9 +38,15 @@ export class LoginComponent {
     .pipe(first())
     .subscribe({
       next: (val) => {
-        this.loginInfo = val;
-        localStorage.setItem('loginInfo', this.loginInfo);
-        this.router.navigate(['/']);
+        if(val === true){
+          localStorage.setItem('loginInfo', this.loginInfo);
+          this.router.navigate(['/']);
+        }else{
+          this.loginForm.reset();
+          this.messageService.openSnackBar('Credentials are invalid');
+          this.router.navigate(['/']);
+        }
+        
       },
       error: (err: any) => {
         console.log(err)

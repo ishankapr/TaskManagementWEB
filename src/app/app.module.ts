@@ -23,6 +23,8 @@ import { LoginComponent } from './login/login.component';
 import { TaskListComponent } from './task.list/task.list.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     TaskAddEditComponentComponent,
     LoginComponent,
     TaskListComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatPaginatorModule,
     MatSortModule,
     MatCardModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTooltipModule
   ],
   providers: [provideNativeDateAdapter()],
   bootstrap: [AppComponent]

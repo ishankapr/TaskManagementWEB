@@ -1,12 +1,8 @@
-
-
-
 .container-fluid{
-    max-width: 80%;
+    max-width: 60%;
     margin: 0 auto;
     flex: 1 1 auto;
-  
     mat-form-field {
-      width: 60%;
+      width: 80%;
     }
 }

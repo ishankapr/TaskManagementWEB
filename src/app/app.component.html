@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
   <span>{{ headerTitle }}</span>
   <span class="spacer"></span>
-  <button mat-raised-button (click)="logout()">
-    Login
+  <button *ngIf="isLogedIn()" mat-raised-button (click)="logout()">
+    Logout
   </button>
 </mat-toolbar>
 

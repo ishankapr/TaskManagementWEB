@@ -8,6 +8,7 @@ import { AuthGuard } from './shared/auth.guard';
 const routes: Routes = [
   { path: '', component: TaskListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
+  { path: '**', component: TaskListComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

@@ -60,7 +60,7 @@ export class TaskAddEditComponentComponent implements OnInit {
         this.taskService.addTask(formData).subscribe({
           next: (val: any) => {
             this.dialogRef.close();
-            this.messageService.openSnackBar('Task Edited Successfully!!');
+            this.messageService.openSnackBar('Task Added Successfully!!');
           },
           error: (err: any) => {
             this.dialogRef.close();
